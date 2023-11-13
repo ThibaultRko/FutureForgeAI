@@ -1,0 +1,27 @@
+import React, { useRef } from 'react';
+import CanvasDraw from 'react-canvas-draw';
+
+function CanvasComponent() {
+  const canvasRef = useRef();
+
+  const handleSubmit = () => {
+    const data = JSON.parse(canvasRef.current.getSaveData());
+    const lines = data.lines;
+    const coordinates = lines.map(line => line.points.map(point => ({ x: point.x, y: point.y })));
+    console.log(coordinates);
+  };
+
+  return (
+    <div>
+        <div className='m-4 border-2'>
+            <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={2} brushColor='black' canvasWidth={800} canvasHeight={200} />
+        </div>
+        <div className='m-4'>
+            <button className='m-4 btn bg-startCargus text-background1' onClick={handleSubmit}>Submit</button>
+        </div> 
+    </div>
+  );
+}
+
+export default CanvasComponent;
+

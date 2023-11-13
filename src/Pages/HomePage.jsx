@@ -1,6 +1,6 @@
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
-import { Link } from "react-router-dom";
+import Card from "../Component/CardComponent";
 
 function Home() {
   return (
@@ -9,58 +9,29 @@ function Home() {
       <div className="mb-auto flex-col flex-center m-8">
         <h1 className="text-6xl m-6 font-bold">Future Forge AI</h1>
         <h2 className="text-3xl px-24">
-        "Future Forge AI est votre plateforme de service basée sur des technologies prédictives fondées sur l'intelligence artificielle. Découvrez nos services et forgez votre futur avec l'IA !"
+          "Future Forge AI est votre plateforme de service basée sur des technologies prédictives fondées sur l'intelligence artificielle. Découvrez nos services et forgez votre futur avec l'IA !"
         </h2>
         <br />
         <div className="flex justify-center">
-        <div className="card card-side bg-base-100 shadow-xl flex space-x-4 m-4 w-2/5 h-max">
-          <figure className="w-1/2">
-            <img
-              src="public/_72884132-e8bf-4395-81d2-1e94c1353d71.jfif"
-              alt="car"
-              className="w-full h-full object-cover"
-            />
-          </figure>
-          <div className="card-body w-1/2">
-            <p className="text-textColor2">
-              “Cargus”, votre outil d’estimation pour les véhicules d’occasion.
-            </p>
-            <div className="card-actions justify-end">
-              <Link
-                to="/cargus"
-                className="btn bg-startCargus text-background1"
-              >
-                essayez
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="card card-side bg-base-100 shadow-xl flex space-x-4 m-4 w-2/5 h-max">
-          <figure className="w-1/2">
-            <img
-              src="public/_72884132-e8bf-4395-81d2-1e94c1353d71.jfif"
-              alt="car"
-              className="w-full h-full object-cover"
-            />
-          </figure>
-          <div className="card-body w-1/2">
-            <p className="text-textColor2">
-              “Cargus”, votre outil d’estimation pour les véhicules d’occasion.
-            </p>
-            <div className="card-actions justify-end">
-              <Link
-                to="/cargus"
-                className="btn bg-startCargus text-background1"
-              >
-                essayez
-              </Link>
-            </div>
-          </div>
-        </div>
+          <Card
+            image="public/_72884132-e8bf-4395-81d2-1e94c1353d71.jfif"
+            alt="car"
+            text="“Cargus”, votre outil d’estimation pour les véhicules d’occasion."
+            link="/cargus"
+            buttonText="essayez"
+          />
+          <Card
+            image="public/_491c57ef-4158-41ff-9bf6-99e067e29328.jfif"
+            alt="car"
+            text="“PenToPixel”, vos écrits manuscrits prennent une nouvelle dimension."
+            link="/pentopixel"
+            buttonText="essayez"
+          />
         </div>
       </div>
       <Footer className="w-screen fixed bottom-0" />
     </div>
   );
 }
+
 export default Home;
