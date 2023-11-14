@@ -17,7 +17,7 @@ function CanvasComponent() {
             <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={2} brushColor='black' canvasWidth={800} canvasHeight={200} />
         </div>
         <div className='m-4'>
-            <button className='m-4 btn bg-startCargus text-background1' onClick={handleSubmit}>Submit</button>
+            <button className='m-4 btn bg-startCargus hover:bg-startCargusHover text-background1' onClick={handleSubmit}>Submit</button>
         </div> 
     </div>
   );

@@ -9,7 +9,7 @@ function Card({ image, alt, text, link, buttonText }) {
       <div className="card-body w-1/2">
         <p className="text-textColor2">{text}</p>
         <div className="card-actions justify-end">
-          <Link to={link} className="btn bg-startCargus text-background1">
+          <Link to={link} className="btn bg-startCargus hover:bg-startCargusHover text-background1">
             {buttonText}
           </Link>
         </div>

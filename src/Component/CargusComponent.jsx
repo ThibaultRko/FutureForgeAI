@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 function AlgoTest() {
   // Initialisation du tableau de véhicules avec un tableau vide
   let [vehicules, setVehicules] = useState([]);
@@ -22,6 +21,7 @@ function AlgoTest() {
     const [transmission, setTransmission] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [prediction, setPrediction] = useState(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     
     // Création d'un tableau des marques uniques à partir du tableau de véhicules
     const brandUniques = [...new Set(vehicules.map(vehicule => vehicule.brand))];
@@ -199,9 +199,6 @@ function AlgoTest() {
         if (brand === '' || model === '' || year === '' || engineSize === '' || kilometrage === '' || fuelType === '' || transmission === '') {
           setErrorMessage('Veuillez remplir tous les champs du formulaire.');
           return;
-        } else if (kilometrage < 1 || kilometrage > 250000) {
-          setErrorMessage('Le kilométrage doit être un nombre entier compris entre 1 et 300 000.');
-          return;
 
         } else {
           setErrorMessage('');
@@ -236,6 +233,7 @@ function AlgoTest() {
         .then(data => {
             console.log('Prédiction :', data.prediction);
             setPrediction(Math.round(data.prediction));
+            setModalIsOpen(true);
           })
           .catch((error) => {
             console.error('Erreur:', error);
@@ -265,8 +263,6 @@ function AlgoTest() {
       return newObj;
     }
     
-    
-      
     
     return (
         <div className='flex flex-col'>
@@ -308,12 +304,40 @@ function AlgoTest() {
               <option key={index} value={transmission}>{transmission}</option>
             ))}
           </select>
-          <input className='m-4 border-2 rounded text-textColor2' type="number" value={kilometrage} onChange={handleKilometrageChange} min="1" max="250000" placeholder='Kilometrage' disabled={!transmission} />
-          <button className='m-4 btn bg-startCargus text-background1' onClick={handleSubmit} disabled={!kilometrage}>Voir l'estimation</button>
+          <p className='font-bold text-solidColor2'>Kilométrage actuel : {kilometrage} km</p>
+          <input
+            className='m-4 border-2 rounded text-startCargus'
+            type="range"
+            value={kilometrage}
+            onChange={handleKilometrageChange}
+            min="10000"
+            max="250000"
+            step="1000"
+            disabled={!transmission}
+          />
+          <button className='m-4 btn bg-startCargus text-background1 hover:bg-startCargusHover' onClick={handleSubmit} disabled={!kilometrage}>Voir l'estimation</button>
           {errorMessage && <p className='m-4 text-textColor2'>{errorMessage}</p>}
-          {prediction && <p className='m-4 text-2xl text-textColor2'>Votre voiture est estimée à <br /><span className='text-4xl font-bold text-startCargus'>{prediction}€</span></p>}
+          <div>
+          {modalIsOpen && (
+            <div className="fixed inset-0 flex items-center justify-center z-50 bg-interactiveComponent3 bg-opacity-75 transition-opacity">
+              <div className="bg-background2 p-6 rounded shadow-lg">
+                {prediction && <p className='m-4 text-4xl text-textColor2'>Votre voiture est estimée à <br /><span className='text-8xl font-bold text-startCargus'>{prediction}€</span></p>}
+                <p>Notez l'estimation</p>
+                <div className="rating">
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                </div>
+                <br />
+                <button className='text-textColor2 items-center mt-2' onClick={() => setModalIsOpen(false)}>Fermer</button>
+              </div>
+            </div>
+          )}
 
         </div>
+      </div>
       );
     }
     

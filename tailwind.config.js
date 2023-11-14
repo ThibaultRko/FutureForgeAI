@@ -17,9 +17,12 @@ export default {
         borderAndSeparator3: "#5EB1EF",
         solidColor1: "#0090FF",
         solidColor2: "#0588F0",
+        solidColor2: "#057ee1",
         textColor1: "#0D74CE",
         textColor2: "#113264",
         startCargus: "#F76B15",
+        startCargusHover: "#EF5F00",
+
         footer1: "#202020",    
       },
       animation: {
