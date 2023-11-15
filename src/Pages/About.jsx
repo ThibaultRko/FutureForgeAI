@@ -3,7 +3,11 @@ import Footer from "../Component/Footer"
 import DevCardComponent from "../Component/DevCardComponent"
 import { FaReact } from "react-icons/fa";
 import { SiVite } from "react-icons/si";
-import { IoLogoJavascript } from "react-icons/io5";
+import { SiFlask } from "react-icons/si";
+import { FaPython } from "react-icons/fa";
+import { SiNumpy } from "react-icons/si";
+import { SiPandas } from "react-icons/si";
+
 
 
 function About() {
@@ -26,16 +30,20 @@ function About() {
         <div className="pt-12">
             <h2 className="flex justify-start text-4xl font-bold text-startCargusHover">EMPLOYED TECHNOLOGIES</h2>
             <div className="flex flex-row justify-between">
-                <p className="flex flex-col content-start items-start text-4xl font-bold italic mt-4 text-textColor2">REACT</p>
-                <p><FaReact className="w-10 h-10 mt-4 mr-32"/></p>
+                <p className="flex flex-col content-start items-start text-4xl font-bold italic mt-4 text-textColor2">PYTHON</p>
+                <p><FaPython className="w-10 h-10 mt-4 mr-32"/></p>
             </div>
             <div className="flex flex-row justify-between">
-                <p className="flex flex-col content-start items-start text-4xl font-bold italic text-textColor2 mt-4">VITE</p>
-                <p><SiVite className="w-10 h-10 mt-4 mr-32"/></p>
+                <p className="flex flex-col content-start items-start text-4xl font-bold italic text-textColor2 mt-4">NUMPY</p>
+                <p><SiNumpy className="w-10 h-10 mt-4 mr-32"/></p>
             </div>
             <div className="flex flex-row justify-between">
-                <p className="flex flex-col content-start items-start text-4xl font-bold italic text-textColor2 mt-4">JAVASCRIPT</p>
-                <p><IoLogoJavascript className="w-10 h-10 mt-4 mr-32"/></p>
+                <p className="flex flex-col content-start items-start text-4xl font-bold italic text-textColor2 mt-4">PANDAS</p>
+                <p><SiPandas className="w-10 h-10 mt-4 mr-32"/></p>
+            </div>
+            <div className="flex flex-row justify-between">
+                <p className="flex flex-col content-start items-start text-4xl font-bold italic text-textColor2 mt-4">FLASK</p>
+                <p><SiFlask className="w-10 h-10 mt-4 mr-32"/></p>
             </div>
         </div>
         <div className="pt-12">
@@ -49,8 +57,8 @@ function About() {
                 <p className="flex flex-col content-end items-end text-4xl font-bold italic text-textColor2 mt-4">VITE</p>
             </div>
             <div className="flex flex-row justify-between">
-                <p><IoLogoJavascript className="w-10 h-10 mt-4 ml-32"/></p>
-                <p className="flex flex-col content-end items-end text-4xl font-bold italic text-textColor2 mt-4">JAVASCRIPT</p>
+                <p><SiFlask className="w-10 h-10 mt-4 ml-32"/></p>
+                <p className="flex flex-col content-end items-end text-4xl font-bold italic text-textColor2 mt-4">FLASK</p>
             </div>
         </div>
         <div className="p-8">
