@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Card({ image, alt, text, link, buttonText }) {
   return (
-    <div className="card card-side bg-base-100 shadow-xl flex space-x-4 m-4 w-2/5 h-max">
+    <div className="card card-side bg-base-100 shadow-xl flex space-x-4 m-4 w-2/5 h-max w-full">
       <figure className="w-1/2">
         <img src={image} alt={alt} className="w-full h-full object-cover" />
       </figure>

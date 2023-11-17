@@ -3,6 +3,8 @@ import numpy as np
 import joblib
 import pandas as pd
 from flask_cors import CORS
+import requests
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -36,6 +38,17 @@ def process():
     # Retourner la prédiction comme réponse JSON
     return jsonify({'prediction': prediction.tolist()})
 
+##################################### API REQUEST ################################################
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json(force=True)
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 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'
+    }
+    response = requests.post('https://api.openai.com/v1/engines/davinci-codex/completions', headers=headers, json=data)
+    return jsonify(response.json())
 
 
 if __name__ == '__main__':

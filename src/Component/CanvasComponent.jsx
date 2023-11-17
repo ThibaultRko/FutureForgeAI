@@ -14,9 +14,10 @@ function CanvasComponent() {
   return (
     <div>
         <div className='m-4 border-2'>
-            <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={2} brushColor='black' canvasWidth={800} canvasHeight={200} />
+            <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={2} brushColor='black' canvasWidth={300} canvasHeight={300} />
         </div>
         <div className='m-4'>
+            <button className='m-4 btn bg-borderAndSeparator1 hover:bg-borderAndSeparator2 text-background1' onClick={() => canvasRef.current.clear()}>Clear</button>
             <button className='m-4 btn bg-startCargus hover:bg-startCargusHover text-background1' onClick={handleSubmit}>Submit</button>
         </div> 
     </div>
