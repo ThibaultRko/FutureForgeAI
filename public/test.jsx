@@ -18,3 +18,8 @@ function App() {
 }
 
 export default App;
+
+
+//////////////////////////////////////:
+
+// 128x96 format d image souhaiter pour envoyer en param le canvas

@@ -3,14 +3,16 @@ import numpy as np
 import joblib
 import pandas as pd
 from flask_cors import CORS
-import requests
 from flask import Flask, request, jsonify
+from keras.models import load_model
+import tensorflow as tf
 
 app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 model = joblib.load('src/Backend/BestUsedCar2.pkl')
+model2 = load_model('src/Backend/mon_model.keras')
 
 @app.route('/process', methods=['POST'])
 def process():
@@ -38,18 +40,13 @@ def process():
     # Retourner la prédiction comme réponse JSON
     return jsonify({'prediction': prediction.tolist()})
 
-##################################### API REQUEST ################################################
+##################################### CHAR REQUEST ################################################
 
-@app.route('/chat', methods=['POST'])
-def chat():
+@app.route('/char', methods=['POST'])
+def char():
     data = request.get_json(force=True)
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
-    }
-    response = requests.post('https://api.openai.com/v1/engines/davinci-codex/completions', headers=headers, json=data)
-    return jsonify(response.json())
-
+    coordinates = data['coordinates']
+    print("coordinates : ", coordinates)
 
 if __name__ == '__main__':
     app.run(debug=True)
