@@ -51,21 +51,21 @@ def char():
     coordinates = data2['coordinates']
     print("coordinates : ", coordinates)
 
-    # Créez un tableau de dimension 300x300 rempli de 1
+    # Création un tableau de dimension 300x300 rempli de 1
     tableau = np.ones((300, 300))
 
-    # Supposons que 'd' est la liste de coordonnées reçues par l'application web
+    # coodinates est la liste de coordonnées reçues par l'application web
     for sublist in coordinates:
         for point in sublist:
             x = int(float(point['x']))
             y = int(float(point['y']))
 
-        # coordonnées sont dans les limites du tableau
+        # vérificationque les coordonnées sont dans les limites du tableau
             if 0 <= x < 300 and 0 <= y < 300:
-                # Dessinez un petit cercle autour de chaque point pour épaissir le trait 
+                # épaissir le trait
                 cv2.circle(tableau, (x, y), radius=12, color=(0,0,0), thickness=-1) 
 
-# Redimensionnez du tableau pour correspondre à l'entrée attendue par notre modèle
+# adaptation du tableau pour l'entrée attendue par notre modèle
     resized_tableau = cv2.resize(tableau, (256,192))  # Largeur x Hauteur
 
 # si le tableau est en niveaux de gris, on ajoute une dimension supplémentaire pour représenter le canal de couleur
@@ -73,22 +73,22 @@ def char():
         resized_tableau = np.expand_dims(resized_tableau, axis=-1)
 
 
-# Si votre modèle attend une entrée de forme (256, 192, 1), vous devez ajouter une dimension supplémentaire à votre tableau pour représenter le batch size
+# notre modèle attend une entrée de forme (256, 192, 1), nous devons donc ajouter une dimension supplémentaire au tableau pour représenter le batch size
     resized_tableau = np.expand_dims(resized_tableau, axis=0)
 
-# Effectuez une prédiction avec votre modèle
+#  Prédiction avec notre modèle
     predictions = model2.predict(resized_tableau)
 
     print("predictions : ", predictions)
 
     class_labels = np.argmax(predictions, axis=1)
 
-    # Obtenez les indices des 5 meilleurs labels
+    # top 5 des meilleurs labels
     top_5_indices = np.argsort(predictions[0])[-5:][::-1]
 
     print("top_5_indices : ", top_5_indices)
 
-#  liste de labels correspondant à vos indices
+#  liste de labels correspondant aux indices
     labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C',
         'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c',
@@ -98,13 +98,13 @@ def char():
 
     print("top_5_labels : ", top_5_labels)
 
-# Obtenez les probabilités des 5 meilleurs labels
+# Probabilités des 5 meilleurs labels
     top_5_probabilities = predictions[0][top_5_indices]
 
-# Convertissez les probabilités en pourcentages
+# Conversion des probabilités en pourcentages
     top_5_percentages = top_5_probabilities * 100
 
-# Affichez les labels et leurs pourcentages correspondants
+# Affichage des labels et leurs pourcentages correspondants
     for label, percentage in zip(top_5_labels, top_5_percentages):
         print(f"{label}: {percentage:.2f}%")
 
