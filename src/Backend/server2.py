@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-model = joblib.load('.\\BestUsedCar2.pkl')
+model = joblib.load('src\Backend\BestUsedCar2.pkl')
 
 
 @app.route('/process', methods=['POST'])
@@ -43,7 +43,7 @@ def process():
     return jsonify({'prediction': prediction.tolist()})
 
 ##################################### CHAR REQUEST ################################################
-model2 = load_model('mon_modele.h5')
+model2 = load_model('src\Backend\mon_modele.h5')
 
 @app.route('/char', methods=['POST'])
 def char():
