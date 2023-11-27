@@ -1,6 +1,7 @@
 import Navbar from "../Component/Navbar"
 import Footer from "../Component/Footer"
 import CanvasComponent from "../Component/CanvasComponent"
+import TestCanvasComponent from "../Component/TestCanvasComponent"
 
 function PenToPixel() {
     return (

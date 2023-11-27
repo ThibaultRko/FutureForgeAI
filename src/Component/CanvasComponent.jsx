@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 
 function CanvasComponent() {
   const canvasRef = useRef();
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [prediction, setPrediction] = useState('');
+  const [word, setWord] = useState('');
 
   const handleSubmit = () => {
     // Assurez-vous que vos coordonnées sont correctement définies
@@ -35,7 +37,8 @@ function CanvasComponent() {
     .then(response => response.json())
     .then(data => {
       console.log('Réponse du backend :', data);
-      // Traitez la réponse de votre backend ici
+      setPrediction(JSON.stringify(data.prediction)); // Mettez à jour l'état de la prédiction avec la réponse du backend
+      setWord(data.word); // Mettez à jour l'état du tableau word avec la réponse du backend
     })
     .catch((error) => {
       console.error('Erreur:', error);
@@ -46,12 +49,15 @@ function CanvasComponent() {
   return (
     <div>
         <div className='m-4 border-2'>
-            <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={5} brushColor='black' canvasWidth={300} canvasHeight={300} />
+            <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={5} brushColor='black' canvasWidth={600} canvasHeight={300} />
         </div>
         <div className='m-4'>
-            <button className='m-4 btn bg-borderAndSeparator1 hover:bg-borderAndSeparator2 text-background1' onClick={() => canvasRef.current.clear()}>Clear</button>
+        <button className='m-4 btn bg-borderAndSeparator1 hover:bg-borderAndSeparator2 text-background1' onClick={() => {canvasRef.current.clear(); setWord([]);}}>Clear</button>
             <button className='m-4 btn bg-startCargus hover:bg-startCargusHover text-background1' onClick={handleSubmit}>Submit</button>
         </div> 
+        <div className='m-4'>
+        <p className='text-4xl font-bold text-textColor2'>Le mot est : <span className='text-startCargus'>{JSON.stringify(word)}</span></p>
+        </div>
     </div>
   );
 }
