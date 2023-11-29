@@ -1,7 +1,6 @@
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import Card from "../Component/CardComponent";
-import ChatBox from "../Component/ChatBoxComponent";
 
 function Home() {
   return (
@@ -9,9 +8,13 @@ function Home() {
       <Navbar />
       <div className="mb-auto flex-col flex-center m-8">
         <div className="flex flex-row sm:flex justify-center">
-        <img src="public\Capture_d_écran_2023-11-17_113931-removebg-preview.png" alt="title" className="max-h-xs max-w-xs sm:w-1/4 w-1/2"/>
-          <h2 className="text-2xl px-24 flex items-center sm:flex hidden ">
-            "Future Forge AI est votre plateforme de service basée sur des technologies prédictives fondées sur l'intelligence artificielle. Découvrez nos services et forgez votre futur avec l'IA !"
+          <h2 id="title1" className="text-6xl font-bold text-textColor2">
+            FUTURE FORGE AI
+          </h2>
+        </div>
+        <div className="flex flex-row sm:flex justify-center">
+          <h2 id="title2" className="text-6xl font-bold text-textColor2">
+            FORGE TON GROSCUL!
           </h2>
         </div>
         

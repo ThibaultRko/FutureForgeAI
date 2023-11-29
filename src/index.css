@@ -19,3 +19,42 @@
         opacity: 1;
     }
 }
+
+#title1 {
+    animation: type 2s steps(16) forwards;
+    overflow: hidden;
+    white-space:nowrap;
+    width: 16ch;
+    visibility: hidden;
+}
+
+@keyframes type {
+    0% {
+        width: 0ch;
+        visibility: visible;
+    }
+    100% {
+        width: 16ch;
+        visibility: visible;
+    }
+}
+#title2 {
+    animation: type 2s steps(19) forwards; 
+    animation-delay: 3s;
+    overflow: hidden;
+    white-space:nowrap;
+    width: 19ch;
+    visibility: hidden;
+}
+
+@keyframes type {
+    0% {
+        width: 0ch;
+        visibility: visible;
+    }
+    100% {
+        width: 19ch;
+        visibility: visible;
+    }
+
+}

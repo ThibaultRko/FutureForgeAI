@@ -6,6 +6,8 @@ function CanvasComponent() {
   const [errorMessage, setErrorMessage] = useState('');
   const [prediction, setPrediction] = useState('');
   const [word, setWord] = useState('');
+  const [monDictionnaire, setMonDictionnaire] = useState({});
+
 
   const handleSubmit = () => {
     // Assurez-vous que vos coordonnées sont correctement définies
@@ -38,28 +40,32 @@ function CanvasComponent() {
     .then(data => {
       console.log('Réponse du backend :', data);
       setPrediction(JSON.stringify(data.prediction)); // Mettez à jour l'état de la prédiction avec la réponse du backend
-      setWord(data.word); // Mettez à jour l'état du tableau word avec la réponse du backend
+      console.log("test", data.word);
+      let joinedWord = data.word.join("");
+      setWord(joinedWord); // Mettez à jour l'état du tableau word avec la réponse du backend
+      console.log("test2", joinedWord);
     })
+
     .catch((error) => {
       console.error('Erreur:', error);
     });
   };
-  
 
   return (
     <div>
         <div className='m-4 border-2'>
-            <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={5} brushColor='black' canvasWidth={600} canvasHeight={300} />
+            <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={5} brushColor='black' canvasWidth={600} canvasHeight={300} loadTimeOffset={0} />
         </div>
         <div className='m-4'>
         <button className='m-4 btn bg-borderAndSeparator1 hover:bg-borderAndSeparator2 text-background1' onClick={() => {canvasRef.current.clear(); setWord([]);}}>Clear</button>
             <button className='m-4 btn bg-startCargus hover:bg-startCargusHover text-background1' onClick={handleSubmit}>Submit</button>
         </div> 
         <div className='m-4'>
-        <p className='text-4xl font-bold text-textColor2'>Le mot est : <span className='text-startCargus'>{JSON.stringify(word)}</span></p>
+        <p className='text-4xl font-bold text-textColor2'>Le mot est : <br /><span className='text-startCargus'>{typeof word === 'string' && word.split('').map((letter, index) => <button className='m-1 btn btn-ghost bg-startCargus hover:bg-startCargusHover normal-case text-xl text-background1' key={index} onClick={() => console.log(letter)}>{letter}</button>)}</span></p>
         </div>
     </div>
   );
 }
 
 export default CanvasComponent;
+

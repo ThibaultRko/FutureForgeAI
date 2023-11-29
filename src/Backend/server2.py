@@ -61,71 +61,6 @@ def process():
     # Retourner la prédiction comme réponse JSON
     return jsonify({'prediction': prediction.tolist()})
 
-##################################### CHAR REQUEST ################################################
-model2 = load_model('src\Backend\mon_modele.h5')
-
-from flask import Flask, request, jsonify
-import numpy as np
-import joblib
-import pandas as pd
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import tensorflow as tf
-from keras.models import load_model
-import cv2
-import math
-
-def distance(point1, point2):
-    return math.sqrt((point1['x'] - point2['x'])**2 + (point1['y'] - point2['y'])**2)
-
-def separate_letters(coordinates, threshold):
-    letters = []
-    current_letter = [coordinates[0]]
-
-    for i in range(1, len(coordinates)):
-        if distance(coordinates[i], coordinates[i-1]) > threshold:
-            letters.append(current_letter)
-            current_letter = [coordinates[i]]
-        else:
-            current_letter.append(coordinates[i])
-
-    letters.append(current_letter)
-    return letters
-
-
-
-app = Flask(__name__)
-
-CORS(app, resources={r"/*": {"origins": "*"}})
-
-model = joblib.load('src\Backend\BestUsedCar2.pkl')
-
-
-@app.route('/process', methods=['POST'])
-def process():
-    data = request.get_json(force=True)
-    data["engineSize"] = float(data["engineSize"])
-    print("Contenu du Dictionnaire : ", data)
-    data = pd.DataFrame.from_dict([data])
-    data = data.rename(columns={'kilometrage': 'mileage'})
-    
-
-    # Créer trois nouvelles colonnes à partir de 'transmission'
-    data[['transmission_Automatic', 'transmission_Manual', 'transmission_Semi-Auto']] = data['transmission'].apply(pd.Series)
-    data[['fuelType_Diesel', 'fuelType_Essence' ,'fuelType_Hybrid']] = data['fuelType'].apply(pd.Series)
-    # retirer les colonnes inutiles
-    data = data.drop(['transmission','fuelType'], axis=1)
-    
-    print("DataFrame après transformation : ", data)
-
-
-
-    # Faire une prédiction avec le modèle
-    prediction = model.predict(data)
-    print(prediction)
-
-    # Retourner la prédiction comme réponse JSON
-    return jsonify({'prediction': prediction.tolist()})
 
 ##################################### CHAR REQUEST ################################################
 model2 = load_model('src\Backend\mon_modele.h5')
@@ -156,7 +91,7 @@ def char():
     _, tableau = cv2.threshold(tableau, 128, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
     # Appliquer une opération morphologique de fermeture
-    kernel = np.zeros((5,5), np.uint8)
+    kernel = np.zeros((1,1), np.uint8)
     tableau = cv2.morphologyEx(tableau, cv2.MORPH_CLOSE, kernel)
 
     # Trouver les contours dans l'image
@@ -181,7 +116,7 @@ def char():
             letter_image = cv2.bitwise_not(letter_image)
 
             # Définir la largeur du contour
-            border_width = 20
+            border_width = 80
 
             # Ajouter un contour blanc autour de l'image
             letter_image = cv2.copyMakeBorder(letter_image, border_width, border_width, border_width, border_width, cv2.BORDER_CONSTANT, value=[255, 255, 255])

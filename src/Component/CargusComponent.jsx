@@ -268,37 +268,37 @@ function AlgoTest() {
         <div className='flex flex-col'>
           <h1 className='m-6 text-4xl font-bold text-textColor2'>Estimation du véhicule <br />
           en une seule étape</h1>
-          <select className='m-4 border-2 rounded text-textColor2' value={brand} onChange={e => setBrand(e.target.value)}>
+          <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={brand} onChange={e => setBrand(e.target.value)}>
             <option value="">Sélectionnez une marque...</option>
             {brandUniques.map((brand, index) => (
               <option key={index} value={brand}>{brand}</option>
             ))}
           </select>
-          <select className='m-4 border-2 rounded text-textColor2' value={model} onChange={e => setModele(e.target.value)} disabled={!brand}>
+          <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={model} onChange={e => setModele(e.target.value)} disabled={!brand}>
             <option value="">Sélectionnez un modèle...</option>
             {modelesUniques.map((model, index) => (
               <option key={index} value={model}>{model}</option>
             ))}
           </select>
-          <select className='m-4 border-2 rounded text-textColor2' value={year} onChange={e => setAnnee(e.target.value)} disabled={!model}>
+          <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={year} onChange={e => setAnnee(e.target.value)} disabled={!model}>
             <option value="">Sélectionnez une année de mise en circulation...</option>
             {anneesUniques.sort().map((year, index) => (
               <option key={index} value={year}>{year}</option>
             ))}
           </select>
-          <select className='m-4 border-2 rounded text-textColor2' value={engineSize} onChange={e => setEngineSize(e.target.value)} disabled={!year}>
+          <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={engineSize} onChange={e => setEngineSize(e.target.value)} disabled={!year}>
             <option value="">Sélectionnez un type de moteur...</option>
             {moteursUniques.sort().map((engineSize, index) => (
               <option key={index} value={engineSize}>{engineSize} litres</option>
             ))}
           </select>
-          <select className='m-4 border-2 rounded text-textColor2' value={fuelType} onChange={e => setFuelType(e.target.value)} disabled={!engineSize}>
+          <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={fuelType} onChange={e => setFuelType(e.target.value)} disabled={!engineSize}>
             <option value="">Sélectionnez un type de carburant...</option>
             {fuelTypeUniques.map((fuelType, index) => (
               <option key={index} value={fuelType}>{fuelType}</option>
             ))}
           </select>
-          <select className='m-4 border-2 rounded text-textColor2' value={transmission} onChange={e => setTransmission(e.target.value)} disabled={!fuelType}>
+          <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={transmission} onChange={e => setTransmission(e.target.value)} disabled={!fuelType}>
             <option value="">Sélectionnez un type transmission...</option>
             {transmissionUniques.map((transmission, index) => (
               <option key={index} value={transmission}>{transmission}</option>
