@@ -7,6 +7,10 @@ function CanvasComponent() {
   const [prediction, setPrediction] = useState('');
   const [word, setWord] = useState('');
   const [monDictionnaire, setMonDictionnaire] = useState({});
+  const [results, setResults] = useState('');
+  const [selectedResult, setSelectedResult] = useState(null);
+  const choosenResults = {};
+  const [showResults, setShowResults] = useState(false);
 
 
   const handleSubmit = () => {
@@ -40,10 +44,9 @@ function CanvasComponent() {
     .then(data => {
       console.log('Réponse du backend :', data);
       setPrediction(JSON.stringify(data.prediction)); // Mettez à jour l'état de la prédiction avec la réponse du backend
-      console.log("test", data.word);
       let joinedWord = data.word.join("");
       setWord(joinedWord); // Mettez à jour l'état du tableau word avec la réponse du backend
-      console.log("test2", joinedWord);
+      setResults(prevResults => [...prevResults, data.results]);
     })
 
     .catch((error) => {
@@ -61,7 +64,8 @@ function CanvasComponent() {
             <button className='m-4 btn bg-startCargus hover:bg-startCargusHover text-background1' onClick={handleSubmit}>Submit</button>
         </div> 
         <div className='m-4'>
-        <p className='text-4xl font-bold text-textColor2'>Le mot est : <br /><span className='text-startCargus'>{typeof word === 'string' && word.split('').map((letter, index) => <button className='m-1 btn btn-ghost bg-startCargus hover:bg-startCargusHover normal-case text-xl text-background1' key={index} onClick={() => console.log(letter)}>{letter}</button>)}</span></p>
+        <p className='text-4xl font-bold text-textColor2'>Le mot est : <br /><span className='text-startCargus'>{typeof word === 'string' && word.split('').map((letter, index) => <button className='m-1 btn btn-ghost bg-startCargus hover:bg-startCargusHover normal-case text-xl text-background1' key={index} onClick={() =>  setShowResults(!showResults) }>{letter}</button>)}</span></p>
+        <p>{showResults && <p>{results}</p>}</p>
         </div>
     </div>
   );

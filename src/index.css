@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+h2 {
+    font-family: 'MaPolice';
+}
+
+@font-face {
+    font-family: 'MaPolice';
+    src: url('public/Bebas_Neue/BebasNeue-Regular.ttf') format('trueType');
+}
+
 .card {
     animation: slideIn 0.5s ease-in;        
 }
@@ -40,7 +49,7 @@
 }
 #title2 {
     animation: type 2s steps(19) forwards; 
-    animation-delay: 3s;
+    animation-delay: 2s;
     overflow: hidden;
     white-space:nowrap;
     width: 19ch;
@@ -58,3 +67,4 @@
     }
 
 }
+

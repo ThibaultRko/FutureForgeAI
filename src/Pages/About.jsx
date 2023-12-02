@@ -16,7 +16,7 @@ function About() {
         <div className="flex flex-col min-h-screen">
     <Navbar />
     <div className="mb-auto sm:grid grid-cols-2 grid-rows-2 gap-4 mt-16 m-4 flex flex-col">
-        <div className="p-8">
+        <div className="p-8 mt-16">
             <DevCardComponent
                 image="public/_d31081e1-769d-48c5-88d6-1ffcd8b196de.jfif"
                 alt="avatar"
@@ -28,7 +28,7 @@ function About() {
                 link2="https://www.linkedin.com/in/vincent-maton-6b8b9b1b0/"
             />
         </div>
-        <div className="pt-12 p-8 sm:grid hidden">
+        <div className="mt-20 pt-12 p-8 sm:grid hidden">
             <h2 className="flex justify-start text-4xl font-bold text-startCargusHover">EMPLOYED TECHNOLOGIES</h2>
             <div className="flex flex-row justify-between">
                 <p className="flex flex-col content-start items-start text-4xl font-bold italic mt-4 text-textColor2">PYTHON</p>
@@ -47,7 +47,7 @@ function About() {
                 <p><SiFlask className="w-10 h-10 mt-4 mr-32"/></p>
             </div>
         </div>
-        <div className="pt-12 p-8 sm:grid hidden">
+        <div className="mb-16 pt-16 p-8 sm:grid hidden">
             <h2 className="flex justify-end text-4xl font-bold text-startCargusHover">EMPLOYED TECHNOLOGIES</h2>
             <div className="flex flex-row justify-between">
                 <p><SiJavascript className="w-10 h-10 mt-4 ml-32"/></p>

@@ -69,7 +69,6 @@ model2 = load_model('src\Backend\mon_modele.h5')
 def char():
     data2 = request.get_json(force=True)
     coordinates = data2['coordinates']
-    print("coordinates : ", coordinates)
 
     # Création un tableau de dimension 300x300 rempli de 1
     tableau = np.ones((300, 600),np.uint8)
@@ -157,7 +156,7 @@ def char():
             
             top_5_indices = np.argsort(predictions[0])[-5:][::-1]
             top_5_labels = [labels[i] for i in top_5_indices]
-            print(top_5_labels)
+            # print(top_5_labels)
 
             # Probabilités des 5 meilleurs labels
             top_5_probabilities = predictions[0][top_5_indices]
@@ -165,23 +164,78 @@ def char():
             # Conversion des probabilités en pourcentages
             top_5_percentages = top_5_probabilities * 100
 
+            results = []
+
             # Affichage des labels et leurs pourcentages correspondants
             for label, percentage in zip(top_5_labels, top_5_percentages):
-                print(f"{label}: {percentage:.2f}%")
+                results.append(f"{label}: {percentage:.2f}%")
+                # print(f"{label}: {percentage:.2f}%")
+
 
             # Ajouter le meilleur label à votre mot
             word.append(best_label)
 
-            # word = ''.join(word)
+    print("results : ", results)
     
 
     print("le mot est : ", word)
 
     # Retourner la prédiction comme sélection JSON
-    return jsonify({'prediction': predictions.tolist(), 'word': word})
+    return jsonify({'prediction': predictions.tolist(), 'word': word, 'results': results})
+##################################### DRAW REQUEST ################################################
+
+model3 = load_model('src\Backend\drawModel2.h5')
+
+@app.route('/draw', methods=['POST'])
+def draw():
+    data3 = request.get_json(force=True)
+    coordinates2 = data3['coordinates']
+
+    # Création un tableau de dimension 300x300 rempli de 1
+    tableau = np.zeros((600, 600),np.uint8)
+
+    # coodinates est la liste de coordonnées reçues par l'application web
+    for sublist in coordinates2:
+        for point in sublist:
+            x = int(float(point['x']))
+            y = int(float(point['y']))
+
+            # vérificationque les coordonnées sont dans les limites du tableau
+            if 0 <= x < 600 and 0 <= y < 600:
+                # épaissir le trait
+                cv2.circle(tableau, (x, y), radius=16, color=(255,255,255), thickness=-1) 
+
+    # Après avoir dessiné tous les points, redimensionnez l'image
+    resized_draw = cv2.resize(tableau, (28,28))
+    resized_draw = resized_draw.astype(np.uint8)
+    resized_draw = resized_draw / 255.0
+    resized_draw = np.expand_dims(resized_draw, axis=-1)
+    resized_draw = np.expand_dims(resized_draw, axis=0)
+
+    draw = []
+    
+    # Faites la prédiction du modèle
+    predictions = model3.predict(resized_draw)
+
+    # Traitez les résultats de la prédiction
+    class_labels = np.argmax(predictions, axis=1)
+    top_5_indices = np.argsort(predictions[0])[-5:][::-1]
+    labels = ['The Eiffel Tower', 'airplane', 'angel', 'apple', 'banana', 'baseball bat', 'bear', 'bee', 'bicycle', 'birthday cake', 'brain', 'broccoli','cookie','cow','dragon','horse','ladder','monkey','motorbike','square','star','sun','train','tree','wine_glass']
+
+    top_5_labels = [labels[i] for i in top_5_indices]
+    top_5_probabilities = predictions[0][top_5_indices]
+    top_5_percentages = top_5_probabilities * 100
+    for label, percentage in zip(top_5_labels, top_5_percentages):
+        print(f"{label}: {percentage:.2f}%")
+
+    # Retourner la prédiction comme sélection JSON
+    best_label = labels[np.argmax(predictions[0])]
+    draw.append(best_label)
+    return jsonify({'prediction': predictions.tolist(), 'draw': draw})
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
+
 
 
 

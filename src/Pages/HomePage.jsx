@@ -7,14 +7,14 @@ function Home() {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <div className="mb-auto flex-col flex-center m-8">
-        <div className="flex flex-row sm:flex justify-center">
+        <div className="flex flex-row sm:flex justify-center mt-16">
           <h2 id="title1" className="text-6xl font-bold text-textColor2">
             FUTURE FORGE AI
           </h2>
         </div>
         <div className="flex flex-row sm:flex justify-center">
           <h2 id="title2" className="text-6xl font-bold text-textColor2">
-            FORGE TON GROSCUL!
+            FORGE YOUR FUTURE!
           </h2>
         </div>
         
@@ -33,6 +33,13 @@ function Home() {
             alt="car"
             text="“PenToPixel”, vos écrits manuscrits prennent une nouvelle dimension."
             link="/pentopixel"
+            buttonText="essayez"
+          />
+          <Card
+            image="public\_6e138b05-3be8-4994-9551-26902872347f.jfif"
+            alt="?"
+            text="“DrawGuesser”, vos écrits manuscrits prennent une nouvelle dimension."
+            link="/drawguesser"
             buttonText="essayez"
           />
         </div>

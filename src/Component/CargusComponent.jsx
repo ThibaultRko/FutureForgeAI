@@ -265,7 +265,7 @@ function AlgoTest() {
     
     
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col mt-16'>
           <h1 className='m-6 text-4xl font-bold text-textColor2'>Estimation du véhicule <br />
           en une seule étape</h1>
           <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={brand} onChange={e => setBrand(e.target.value)}>

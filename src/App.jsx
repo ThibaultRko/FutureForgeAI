@@ -4,6 +4,7 @@ import Home from './Pages/HomePage'
 import Cargus from './Pages/Cargus'
 import About from './Pages/About'
 import PenToPixel from './Pages/PenToPixel'
+import DrawGuesser from './Pages/DrawGuesser'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/cargus" element={<Cargus />} />
             <Route path="/about" element={<About />} />
             <Route path="/pentopixel" element={<PenToPixel />} />
+            <Route path="/drawguesser" element={<DrawGuesser />} />
           </Routes>
         </BrowserRouter>
       </div>
