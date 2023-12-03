@@ -5,10 +5,10 @@ import DrawComponent from "../Component/DrawComponent"
 
 function DrawGuesser() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-yellow-100">
             <Navbar />
-            <div className=" flex flex-center m-auto m-8 mt-16">
-                <h1 className="m-6 text-4xl font-bold text-textColor2">DrawGuesser</h1>
+            <div className=" flex flex-center m-auto mt-16">
+                <h1 className="mt-4 text-4xl font-bold text-yellow-800 drawStyle">DrawGuesser</h1>
             </div>
             <div className="mb-auto flex flex-center m-auto">
                 <DrawComponent />

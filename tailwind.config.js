@@ -17,7 +17,7 @@ export default {
         borderAndSeparator3: "#5EB1EF",
         solidColor1: "#0090FF",
         solidColor2: "#0588F0",
-        solidColor2: "#057ee1",
+        solidColor3: "#057ee1",
         textColor1: "#0D74CE",
         textColor2: "#113264",
         startCargus: "#F76B15",

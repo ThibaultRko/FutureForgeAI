@@ -265,8 +265,8 @@ function AlgoTest() {
     
     
     return (
-        <div className='flex flex-col mt-16'>
-          <h1 className='m-6 text-4xl font-bold text-textColor2'>Estimation du véhicule <br />
+        <div className='flex flex-col mt-16 shadow-xl'>
+          <h1 className='m-2 text-4xl font-bold text-textColor1 drop-shadow-xl'>Estimation du véhicule <br />
           en une seule étape</h1>
           <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={brand} onChange={e => setBrand(e.target.value)}>
             <option value="">Sélectionnez une marque...</option>
@@ -304,7 +304,7 @@ function AlgoTest() {
               <option key={index} value={transmission}>{transmission}</option>
             ))}
           </select>
-          <p className='font-bold text-solidColor2'>Kilométrage actuel : {kilometrage} km</p>
+          <p className='font-bold text-textColor1'>Kilométrage actuel : {kilometrage} km</p>
           <input
             className='m-4 border-2 rounded text-startCargus'
             type="range"

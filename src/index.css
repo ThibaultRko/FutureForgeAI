@@ -6,9 +6,22 @@ h2 {
     font-family: 'MaPolice';
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 @font-face {
     font-family: 'MaPolice';
     src: url('public/Bebas_Neue/BebasNeue-Regular.ttf') format('trueType');
+}
+
+@font-face {
+    font-family: 'Sketchy';
+    src: url('public/VerySimpleChalk.ttf') format('trueType');
+}
+
+.drawStyle {
+    font-family: 'Sketchy';
 }
 
 .card {
@@ -30,7 +43,7 @@ h2 {
 }
 
 #title1 {
-    animation: type 2s steps(16) forwards;
+    animation: type 1.5s steps(16) forwards;
     overflow: hidden;
     white-space:nowrap;
     width: 16ch;
@@ -48,8 +61,8 @@ h2 {
     }
 }
 #title2 {
-    animation: type 2s steps(19) forwards; 
-    animation-delay: 2s;
+    animation: type 1.5s steps(19) forwards; 
+    animation-delay: 1.5s;
     overflow: hidden;
     white-space:nowrap;
     width: 19ch;

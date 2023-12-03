@@ -169,7 +169,7 @@ def char():
             # Affichage des labels et leurs pourcentages correspondants
             for label, percentage in zip(top_5_labels, top_5_percentages):
                 results.append(f"{label}: {percentage:.2f}%")
-                # print(f"{label}: {percentage:.2f}%")
+                print(f"{label}: {percentage:.2f}%")
 
 
             # Ajouter le meilleur label à votre mot
@@ -192,7 +192,7 @@ def draw():
     coordinates2 = data3['coordinates']
 
     # Création un tableau de dimension 300x300 rempli de 1
-    tableau = np.zeros((600, 600),np.uint8)
+    tableau = np.zeros((400, 400),np.uint8)
 
     # coodinates est la liste de coordonnées reçues par l'application web
     for sublist in coordinates2:
@@ -201,7 +201,7 @@ def draw():
             y = int(float(point['y']))
 
             # vérificationque les coordonnées sont dans les limites du tableau
-            if 0 <= x < 600 and 0 <= y < 600:
+            if 0 <= x < 400 and 0 <= y < 400:
                 # épaissir le trait
                 cv2.circle(tableau, (x, y), radius=16, color=(255,255,255), thickness=-1) 
 
