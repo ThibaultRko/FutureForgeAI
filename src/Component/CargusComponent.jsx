@@ -266,9 +266,9 @@ function AlgoTest() {
     
     return (
         <div className='flex flex-col mt-16 shadow-xl'>
-          <h1 className='m-2 text-4xl font-bold text-textColor1 drop-shadow-xl'>Estimation du véhicule <br />
+          <h1 className='m-2 text-2xl font-bold text-textColor1 drop-shadow-xl'>Estimation du véhicule <br />
           en une seule étape</h1>
-          <select className='m-4 border-2 rounded text-textColor2 bg-background1' value={brand} onChange={e => setBrand(e.target.value)}>
+          <select className='mb-4 border-2 rounded text-textColor2 bg-background1' value={brand} onChange={e => setBrand(e.target.value)}>
             <option value="">Sélectionnez une marque...</option>
             {brandUniques.map((brand, index) => (
               <option key={index} value={brand}>{brand}</option>

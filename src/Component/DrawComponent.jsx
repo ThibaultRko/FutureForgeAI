@@ -100,7 +100,7 @@ function DrawComponent() {
             <div className='flex absolute bottom-16 ml-8'>
                 <p className='drawStyle ml-36 text-textColor2'>Score : {counter}/3</p>
             </div>  
-            <div className='m-4 border-2'>
+            <div className='m-4 border-2 shadow-xl'>
                 <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={5} brushColor='black' canvasWidth={400} canvasHeight={400} loadTimeOffset={0} hideGrid={true} hideInterface={true} false/>
             </div>
         </div>

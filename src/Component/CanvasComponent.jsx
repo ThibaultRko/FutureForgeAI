@@ -53,16 +53,19 @@ function CanvasComponent() {
 
   return (
     <div>
-        <div className='m-4 border-2'>
+        <div className='mt-4 border-2 shadow-xl'>
             <CanvasDraw ref={canvasRef} lazyRadius={0} brushRadius={5} brushColor='black' canvasWidth={600} canvasHeight={300} loadTimeOffset={0} />
         </div>
-        <div className='m-4'>
-        <button className='m-4 btn bg-borderAndSeparator1 hover:bg-borderAndSeparator2 text-background1' onClick={() => {canvasRef.current.clear(); setWord([]);}}>Clear</button>
-            <button className='m-4 btn bg-startCargus hover:bg-startCargusHover text-background1' onClick={handleSubmit}>Submit</button>
-        </div> 
-        <div className='m-4'>
-        <p className='text-4xl font-bold text-green-800 drawStyle'>Le mot est : <br /><span className='text-startCargus'>{typeof word === 'string' && word.split('').map((letter, index) => <button className='m-1 btn btn-ghost bg-startCargus hover:bg-startCargusHover normal-case text-xl text-background1' key={index} onClick={() => console.log(letter)  }>{letter}</button>)}</span></p>
+        <div className='flex flex-col align-middle'>
+          <div className='ml-4 flex justify-between '>
+            <button className='text-4xl text-green-500 drawStyle' onClick={() => {canvasRef.current.clear(); setWord([]);}}>Clear</button>
+            <button className='text-4xl m-4 text-green-800 drawStyle' onClick={handleSubmit}>Submit</button>
+          </div> 
+          <div>
+            <p className='flex ml-4 mb-4 text-4xl font-bold text-green-800 drawStyle'>Le mot est :<br /><span className='text-startCargus'>{typeof word === 'string' && word.split('').map((letter, index) => <button className='ml-2 text-green-800 drawStyle' key={index} onClick={() => console.log(letter)  }>{letter}</button>)}</span></p>
+          </div>
         </div>
+        
     </div>
   );
 }
